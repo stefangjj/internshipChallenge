@@ -52,6 +52,7 @@ let nextItems;
               </div>
           </div>
         `;
+
         cardLayout.appendChild(card);
 
         const heartIcon = card.querySelector('.heart');
@@ -60,6 +61,7 @@ let nextItems;
         heartIcon.addEventListener('click', () => {
           heartIcon.classList.toggle('clickedHeart');
 
+          //incrementing likes
           if (heartIcon.classList.contains('clickedHeart')) {
             likesCount.innerText = parseInt(likesCount.innerText) + 1;
           } else {
