@@ -5,20 +5,16 @@ let cardLayout = document.querySelector('.card-container');
 let loadMoreButton = document.getElementById('load-more-button');
 let initialItems = 0;
 let loadItems = 4;
-
+let nextItems;
 
   fetch('../data.json')
     .then(response => response.json())
     .then(data => {
-      var nextItems = data.slice(initialItems, initialItems + loadItems);
+      nextItems = data.slice(initialItems, initialItems + loadItems);
       initialItems += loadItems;
       
       
-      if(nextItems===data.length){
-        loadMoreButton.style.display='none';
-      }
-        nextItems = data.slice(initialItems, initialItems + loadItems);
-        console.log('nextItems value:', nextItems.length)
+      
 
       nextItems.forEach(item => {
         const card = document.createElement('div');
@@ -81,9 +77,15 @@ let loadItems = 4;
       fetch('../data.json')
         .then(response => response.json())
         .then(data => {
-          const nextItems = data.slice(initialItems, initialItems + loadItems);
+          nextItems = data.slice(initialItems, initialItems + loadItems);
           initialItems += loadItems;
     
+          if(nextItems==0){
+            loadMoreButton.style.display='none';
+          }
+            nextItems = data.slice(initialItems, initialItems + loadItems);
+            console.log('nextItems value:', nextItems.length)
+          
           nextItems.forEach(item => {
             const card = document.createElement('div');
             card.classList.add('card');
